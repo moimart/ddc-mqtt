@@ -2,13 +2,20 @@
 #include "simple-ddc.h"
 
 static PyObject* switch_to_input(PyObject* self, PyObject* args) {
-    uint8_t display, input;
-    if (!PyArg_ParseTuple(args, "ii", &display, &input))
+    uint8_t* display = malloc(sizeof(uint8_t));
+    uint8_t* input = malloc(sizeof(uint8_t));;
+    //if (!PyArg_ParseTuple(args, "ii", &display, &input))
+    //    return NULL;
+    if (!PyArg_ParseTuple(args, "ii", display, input))
         return NULL;
 
     DDCA_Display_Handle* handle = open_first_display_by_dlist();
-    switch_input(handle,input);
+    switch_input(handle,*input);
     ddca_close_display(handle);
+
+    free(display);
+    free(input);
+
     Py_RETURN_NONE;
 }
 
