@@ -55,15 +55,6 @@ uint8_t show_any_value(
     }
 
     if (valrec->value_type == DDCA_NON_TABLE_VCP_VALUE) {
-       /*printf("Non-Table value: mh=0x%02x, ml=0x%02x, sh=0x%02x, ml=0x%02x\n",
-              valrec->val.c_nc.mh,
-              valrec->val.c_nc.ml,
-              valrec->val.c_nc.sh,
-              valrec->val.c_nc.sl);
-       printf("As continuous value (if applicable): max value = %d, cur value = %d\n",
-             valrec->val.c_nc.mh << 8 | valrec->val.c_nc.ml,    // or use macro VALREC_MAX_VAL()
-             valrec->val.c_nc.sh << 8 | valrec->val.c_nc.sl);   // or use macro VALREC_CUR_VAL()*/
-
         uint8_t ret_value = valrec->val.c_nc.sl;
         free(valrec);
         return ret_value;
