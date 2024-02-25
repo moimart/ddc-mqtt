@@ -4,8 +4,7 @@
 static PyObject* switch_to_input(PyObject* self, PyObject* args) {
     uint8_t* display = malloc(sizeof(uint8_t));
     uint8_t* input = malloc(sizeof(uint8_t));;
-    //if (!PyArg_ParseTuple(args, "ii", &display, &input))
-    //    return NULL;
+
     if (!PyArg_ParseTuple(args, "ii", display, input))
         return NULL;
 
