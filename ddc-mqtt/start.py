@@ -8,6 +8,8 @@ from devices import display_device, display_input_entity, hass_display_sensor
 
 class Service:
     def __init__(self):
+        self.dt = 0
+        
         try:
             with open("config.yaml","r") as config:
                 config = yaml.safe_load(config)
@@ -29,6 +31,7 @@ class Service:
             self.create_display_switch(display_data['id'],input_name,input_code)
             
         self.update_inputs_states()
+        self.timer = Timer(120, self)
         
     def update_inputs_states(self):
         #check what input is on by getting the code from simpleddc
@@ -46,7 +49,15 @@ class Service:
         #check if this input is already on. if so, return
         #if not, switch display to this input, set rest of inputs to off
         pass
-        
+    
+    def on_timer(self, timer, elapsed):
+        #check input states
+        self.timer.reset()
+        self.timer.active = True
+    
+    def step(self, dt):
+        self.timer.step(dt)
+        self.mqtt.step(dt)
 
     def create_display_switch(self, display_id, input_name, input_code):
         topic = display_input_entity["generic_switch"]
@@ -75,5 +86,11 @@ class Service:
 
         self.inputs[display_id]["switches"].append({"id": input_name, "topic": topic, "config": config, "code": input_code})
         
-        
+    def start(self):
+        while True:
+            t0 = timer()
+            self.step(self.dt)
+            t1 = timer()
+            self.dt = t1 - t0
+
             
