@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "8000:8000" # Adjust the left side to the port you want to expose on the host
+    environment:
+      - PYTHONUNBUFFERED=1

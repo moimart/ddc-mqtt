@@ -7,8 +7,8 @@ device = {
 
 
 display_device = {
-    "identifiers": ["Kid"],
-    "name": "Display # KVM",
+    "identifiers": ["Input"],
+    "name": "Display Input KVM",
     "model": "Kikkei-display-kvm",
     "manufacturer": "Kikkei Labs",
 }
@@ -16,13 +16,13 @@ display_device = {
 display_input_entity = {
     "generic_switch": 'homeassistant/switch/display-kvm-#/?-switch/config',
     "generic_switch_config": {
-        "availability_topic": "kikkei/display-kvm/garbage",
-        "state_topic": "kikkei/display-kvm/kids/#/?/state",
+        "availability_topic": "kikkei/display-kvm/availability",
+        "state_topic": "kikkei/display-kvm/#/?/state",
         "name": "",
         "unique_id": "",
         "object_id": "",
-        "payload_available": "ON",
-        "payload_not_available": "OFF",
+        "payload_available": "online",
+        "payload_not_available": "offline",
         #"json_attributes_topic": "kikkei/household/#/%/attributes",
         "state_on": "true",
         "state_off": "false",

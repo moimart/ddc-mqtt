@@ -6,6 +6,6 @@ module = Extension('simpleddc',
                    library_dirs=['/usr/lib/aarch64-linux-gnu/libddcutil.so.4'],
                    include_dirs=['/usr/include'])
 
-setup(name='example',
+setup(name='simpleddc',
       version='1.0',
       ext_modules=[module])

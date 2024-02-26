@@ -1,4 +1,3 @@
-from devices import garbage_config
 import paho.mqtt.client as mqtt
 import json
 from timer import Timer
