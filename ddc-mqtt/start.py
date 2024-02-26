@@ -19,6 +19,34 @@ class Service:
                                 config["mqtt"]["password"],
                                 config["mqtt"]["host"],
                                 config["mqtt"]["port"])
+        
+        self.inputs = {}
+        display_data = config['display']
+
+        self.inputs[display_data['id']]['switches'] = []
+        
+        for input_name, input_code in display_data['inputs'].items():
+            self.create_display_switch(display_data['id'],input_name,input_code)
+            
+        self.update_inputs_states()
+        
+    def update_inputs_states(self):
+        #check what input is on by getting the code from simpleddc
+        #change the state of only that input
+        pass
+            
+    def on_message(self, topic, payload):
+        if payload =='OFF':
+            return #do nothing
+        
+        if "command" in topic:
+            self.activate_input_deactivate_rest(self.inputs[topic.split("/")[2]],topic.split("/")[3])
+            
+    def activate_input_deactivate_rest(display_id,display_name):
+        #check if this input is already on. if so, return
+        #if not, switch display to this input, set rest of inputs to off
+        pass
+        
 
     def create_display_switch(self, display_id, input_name, input_code):
         topic = display_input_entity["generic_switch"]
