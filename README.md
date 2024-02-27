@@ -5,7 +5,7 @@
 - Do you have a display with multiple inputs?
 - Would you like to be able to switch inputs without the need of meddling with clunky OSD menus and akwardly-positioned control 'nipples'?
 - Does this happen to you even with fancy, expensive displays like the Neo G9 line from Samsung? 
-- Can you imagine KVM scenarios based on home assistant scenarios?
+- Can you imagine KVM scenarios based on home assistant automations?
 
 Then this software is for you!!!
 
