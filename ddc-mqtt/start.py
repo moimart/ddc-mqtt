@@ -23,6 +23,8 @@ class Service:
                                 config["mqtt"]["host"],
                                 config["mqtt"]["port"])
         
+        poll_interval = 20 if "interval" not in config else config["interval"]
+        
         self.mqtt.delegate = self
         
         self.inputs = {}
@@ -30,27 +32,24 @@ class Service:
         
         print(display_data)
 
-        self.inputs = {
-            display_data['id']: {
-                "switches": []
-            }
-        }
+        self.inputs = {}
         
-        for input_name, input_code in display_data['inputs'].items():
-            self.create_display_switch(display_data['id'],input_name,input_code)
+        for display in display_data:
+            self.inputs[display['id']] = { "switches": [] }
+            for input_name, input_code in display['inputs'].items():
+                self.create_display_switch(display['id'],input_name,input_code)
             
-        self.timer = Timer(30, self)
+        self.timer = Timer(poll_interval, self)
         self.update_inputs_states()
         
     def update_inputs_states(self):
-        input_code = simpleddc.show_input()
-        
-        print(f"Input code is {input_code}")
-        
         for display_id in self.inputs.keys():
+            input_code = simpleddc.show_input(int(display_id))
+        
+            print(f"Input code is {input_code}")
+            
             for entry in self.inputs[display_id]["switches"]:
                 if entry["code"] == input_code:
-                    print("Found {}".format(entry["topic"]))
                     self.mqtt.client.publish(entry["topic"], "true")
                     entry["state"] = True
                 else:
@@ -101,7 +100,7 @@ class Service:
         config["state_topic"] = config["state_topic"].replace("?", input_name)
 
         device = display_device.copy()
-        device["name"] = device["name"].replace("#", input_name)
+        device["name"] = device["name"].replace("?", input_name)
         device["model"] = "{}-{}".format(device["model"],display_id)
         config["device"] = device
 

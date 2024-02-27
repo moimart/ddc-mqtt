@@ -4,10 +4,10 @@ mqtt:
   host: 
   port: 1883
 display:
-  id: 1
-  inputs:
-    hdmi1: 5
-    hdmi2: 6
-    hdmi3: 7
-    dp: 15
-  
+  - id: 1
+    inputs:
+      HDMI1: 5
+      HDMI2: 6
+      HDMI3: 7
+      DP: 15
+interval: 20

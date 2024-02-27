@@ -8,7 +8,8 @@
              ddca_rc_desc(status_code));              \
    } while(0)
 
-DDCA_Display_Handle * open_first_display_by_dlist() {
+DDCA_Display_Handle * open_first_display_by_dlist() 
+{
    printf("Check for monitors using ddca_get_displays()...\n");
    DDCA_Display_Handle dh = NULL;
 
@@ -20,13 +21,39 @@ DDCA_Display_Handle * open_first_display_by_dlist() {
 
    if (dlist->ct == 0) {
       printf("   No DDC capable displays found\n");
-   }
-   else {
+   } else {
       DDCA_Display_Info * dinf = &dlist->info[0];
       DDCA_Display_Ref * dref = dinf->dref;
       printf("Opening display %s\n", dinf->model_name);
       printf("Model: %s\n", dinf->model_name);
-      //printf("Model: %s\n", dinf->mmid.model_name);
+
+      DDCA_Status rc = ddca_open_display2(dref, false, &dh);
+      if (rc != 0) {
+          DDC_ERRMSG("ddca_open_display2", rc);
+      }
+   }
+   ddca_free_display_info_list(dlist);
+   return dh;
+}
+
+DDCA_Display_Handle * open_display_by_dlist(unsigned int display)
+{
+   DDCA_Display_Handle dh = NULL;
+
+   // Inquire about detected monitors.
+   DDCA_Display_Info_List* dlist = NULL;
+   ddca_get_display_info_list2(
+         false,    // don't include invalid displays
+         &dlist);
+
+   if (dlist->ct == 0 || dlist->ct < display) {
+      printf("   No DDC capable displays found\n");
+   } else {
+      DDCA_Display_Info * dinf = &dlist->info[display - 1];
+      DDCA_Display_Ref * dref = dinf->dref;
+      printf("Opening display %s\n", dinf->model_name);
+      printf("Model: %s\n", dinf->model_name);
+
       DDCA_Status rc = ddca_open_display2(dref, false, &dh);
       if (rc != 0) {
           DDC_ERRMSG("ddca_open_display2", rc);

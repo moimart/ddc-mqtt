@@ -19,9 +19,16 @@ static PyObject* switch_to_input(PyObject* self, PyObject* args) {
 }
 
 static PyObject* show_input(PyObject* self, PyObject* args) {
-    DDCA_Display_Handle* handle = open_first_display_by_dlist();
+    uint8_t* display = malloc(sizeof(uint8_t));
+
+    if (!PyArg_ParseTuple(args, "i", display))
+        *display = 0;
+
+    DDCA_Display_Handle* handle = open_display_by_dlist(*display);
     int result = show_any_value(handle,DDCA_NON_TABLE_VCP_VALUE, 0x60);
     ddca_close_display(handle);
+
+    free(display);
     return PyLong_FromLong(result);
 }
 

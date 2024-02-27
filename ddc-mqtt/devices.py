@@ -1,6 +1,6 @@
 device = {
     "identifiers": ["Kikkei Labs Display KVM"],
-    "name": "Display KVM",
+    "name": "Display KVM #?",
     "model": "Kikkei-display-kvm-0",
     "manufacturer": "Kikkei Labs",
 }
@@ -8,7 +8,7 @@ device = {
 
 display_device = {
     "identifiers": ["Input"],
-    "name": "Display Input KVM",
+    "name": "Display Input KVM #?",
     "model": "Kikkei-display-kvm",
     "manufacturer": "Kikkei Labs",
 }

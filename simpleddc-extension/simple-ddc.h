@@ -7,6 +7,7 @@
 #include <ddcutil_status_codes.h>
 
 DDCA_Display_Handle * open_first_display_by_dlist();
+DDCA_Display_Handle * open_display_by_dlist(unsigned int display);
 DDCA_Status switch_input(DDCA_Display_Handle* handle, uint8_t input);
 uint8_t show_any_value(
         DDCA_Display_Handle     dh,
