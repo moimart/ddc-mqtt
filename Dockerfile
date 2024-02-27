@@ -14,7 +14,7 @@ WORKDIR /usr/src/app
 COPY . .
 
 # Build the extension module
-RUN (cd simpleddc-extension && python setup.py build_ext --inplace)
+RUN (cd simpleddc-extension && python setup.py install)
 
 # Install Python dependencies for the ddc-mqtt project
 RUN pip install --no-cache-dir -r ./ddc-mqtt/requirements.txt

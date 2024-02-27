@@ -2,9 +2,11 @@ version: '3.8'
 services:
   app:
     build: .
+    network_mode: "host"
     volumes:
       - .:/usr/src/app
-    ports:
-      - "8000:8000" # Adjust the left side to the port you want to expose on the host
+    devices:
+      - "/dev/i2c-20:/dev/i2c-20"
+      - "/dev/i2c-21:/dev/i2c-21"
     environment:
       - PYTHONUNBUFFERED=1
