@@ -63,7 +63,7 @@ VCP Features:
 We'll focus on the **Feature: 60 (Input Source)** ... I have good news and bad news:
 
 1. Good news: The display supports changing inputs with DDC!
-2. Bad news: **The inputs and the values are, for the most part, are bullsh\*t!!**
+2. Bad news: **The inputs and the values are, for the most part, bullsh\*t!!**
 
 Because of this, we will need to figure out the actual input values for each actual input of the monitor.
 
