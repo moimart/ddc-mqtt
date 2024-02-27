@@ -9,12 +9,12 @@
 
 Then this software is for you!!!
 
-You only need a Linux machine connected to the display, a bit of knowledge on your monitor's support of DDC capabilities and this will 
-create a device for your 
+You only need a Linux machine connected to the display, a bit of knowledge on your display's support of DDC capabilities and this will 
+create a device for your Home Assistance (or your MQTT setup) so you can control the display
 
 ## Display's DDC capabilities
 
-First of all, you'd need some info about your display about DDC capabilities wrt display inputs. You'd need the *ddcutil* tool to figure
+First of all, you'd need some info about your display and its DDC capabilities wrt display inputs. You'd need the *ddcutil* tool to figure
 things out. For example: this is what my G95NC Samsung Neo G9 Reports:
 
 ```
