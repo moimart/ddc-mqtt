@@ -70,7 +70,8 @@ Because of this, we will need to figure out the actual input values for each act
 You can use **ddcutil** again to figure them out like so:
 
 ```
-# change the last number to figure the actual values that change the input. Have in mind these are hexadecimal values you'll need to convert to integers
+# change the last number to figure the actual values that change the input. 
+# Have in mind these are hexadecimal values you'll need to convert to integers
 $ sudo ddcutil setvcp 0x60 0x01 
 ```
 
@@ -87,8 +88,8 @@ mqtt:
 display:
   - id: 1 #display to control. if only a single monitor, this must be 1
     inputs:
-      HDMI1: 5 # key: value — you can change the name of the input. The codes here are as integers, not hexadecimal
-      HDMI2: 6
+      HDMI1: 5 # key: value — you can change the name of the input. 
+      HDMI2: 6 # The codes here are input as integers, not hexadecimal
       HDMI3: 7
       DP: 15
 interval: 20
@@ -122,8 +123,10 @@ If your MQTT server is shared or is part of a *Home Assistant* setup, the usage 
 If you want to use it MQTT RAW!!! you'd have access to the entities in the following paths:
 
 ```
-Subscribe to kikkei/display-kvm/{number_of_display}/{input_name_in_the_config}/state -> with values 'true' or 'false' to check the state
-Publish 'ON' to kikkei/display-kvm/{number_of_display}/{input_name_in_the_config}/command for activation -> no need to send 'OFF'; switching is taken care of
+Subscribe to kikkei/display-kvm/{number_of_display}/{input_name_in_the_config}/state 
+-> with values 'true' or 'false' to check the state
+Publish 'ON' to kikkei/display-kvm/{number_of_display}/{input_name_in_the_config}/command for activation 
+-> no need to send 'OFF'; switching is taken care of
 
 Example: kikkei/display-kvm/1/HDMI1/state
 ```
