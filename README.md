@@ -2,7 +2,7 @@
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/moimartb)
 
-- Do you have a displays with multiple inputs?
+- Do you have a display with multiple inputs?
 - Would you like to be able to switch inputs without the need of meddling with clunky OSD menus and akwardly-positioned control 'nipples'?
 - Does this happen to you even with fancy, expensive displays like the Neo G9 line from Samsung? 
 - Can you imagine KVM scenarios based on home assistant scenarios?
