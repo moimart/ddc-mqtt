@@ -1,6 +1,7 @@
 version: '3.8'
 services:
   app:
+    restart: unless-stopped
     build: .
     network_mode: "host"
     volumes:
